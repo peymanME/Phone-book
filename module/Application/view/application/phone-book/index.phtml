@@ -1,0 +1,62 @@
+<div class="container" ng-controller="ListPhoneBookController">
+    <?= $this->partial("layout/head/head-page.phtml", ["signString" => ["headTitle"=>"Phone book","smallTitle" => "List"]])?>
+    <div ng-init="getMenu('<?= $this->url('root',['action' => 'menu'])?>')"></div>
+    <div ng-init="getData('<?= $this->url('phonebook',['action' => 'getData'])?>')"></div>
+    <section id="phonBookSection">
+        <table class="table table-hover">
+            <thead>
+            <th colspan="7">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" ></span></span>
+                    <input type="search" ng-model="u" class="form-control" placeholder="Filter phonebook..." aria-label="filter users" />
+                </div>
+            </th>
+            </thead>
+            <thead>
+            <th>Id <a href="#" ng-click="sortBy('id')"> <span class="caret"></span></a></th>
+                 <th>First name <a href="#" ng-click="sortBy('FirstName')"> <span class="caret"></span></a></th>
+                 <th>Last name <a href="#" ng-click="sortBy('LastName')"> <span class="caret"></span></a></th>
+                 <th>Home phone <a href="#" ng-click="sortBy('HomePhone')"> <span class="caret"></span></a></th>
+                 <th>Mobile phone <a href="#" ng-click="sortBy('MobilePhone')"> <span class="caret"></span></a></th>
+                 <th>Work</th>
+                 <th></th>
+             </thead>
+             <tr ng-repeat="user in vm.items | orderBy:propertyName:reverse | filter:u as results">
+                 <td>{{user.id}}</td>
+                 <td>{{user.FirstName}}</td>
+                 <td>{{user.LastName}}</td>
+                 <td>{{user.HomePhone}}</td>
+                 <td>{{user.MobilePhone}}</td>
+                 <td>{{user.WorkTitle}}</td>
+                 <td>
+                     <div class="btn-group" role="group">
+                         <button type="button" ng-click="manage('<?= $this->url('phonebook', ['action'=>'manage'])?>/'+ user.id)" class="btn btn-primary" >Edit</button>
+                         <button type="button" ng-click="delete('<?= $this->url('phonebook', ['action'=>'delete'])?>/'+ user.id)" class="btn btn-danger" >Delete</button>
+                     </div>
+                 </td>
+             </tr>
+             <tr ng-if="results.length === 0">
+                 <td colspan="7"><strong>No results found...</strong></td>
+             </tr>
+        </table>
+<!-- pager -->
+            <ul ng-if="vm.pager.pages.length" class="pagination">
+                <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                    <a ng-click="vm.setPage(1)">First</a>
+                </li>
+                <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                    <a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a>
+                </li>
+                <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+                    <a ng-click="vm.setPage(page)">{{page}}</a>
+                </li>                
+                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                    <a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>
+                </li>
+                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                    <a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>
+                </li>
+            </ul>        
+        
+    </section>
+</div>

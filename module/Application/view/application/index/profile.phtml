@@ -1,0 +1,50 @@
+<?php
+?>
+
+<div class="panel panel-default text-center" ng-controller="profileController">
+  <div class="panel-heading">
+    <h3 class="panel-title">Register</h3>
+  </div>
+  <div class="panel-body">
+    <section id="loginFormSection">
+        <?php //$this->form ()->openTag ( $form );?> 
+        <form ng-submit="submit('<?=$this->url('root',array('action'=>'profile'))?>')" class="form-horizontal" id="registerForm">
+           <div class="form-group">
+               <input ng-model="User.FirstName" name="FirstName" id="FirstName" type="text" class="form-control" placeholder="First name" ng-init="User.FirstName='<?= $form->get('FirstName')->getValue()?>'"/>
+                <?php //$this->formElement($form->get('FirstName')); ?>
+                <?= $this->formElementErrors($form->get('FirstName')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="User.LastName" name="LastName" id="LastName" type="text" class="form-control" placeholder="Last name" ng-init="User.LastName='<?= $form->get('LastName')->getValue()?>'"/>
+                <?php //$this->formElement($form->get('LastName')); ?>   
+                <?= $this->formElementErrors($form->get('LastName')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="User.Email" name="Email" id="Email" type="email" class="form-control" placeholder="Email" ng-init="User.Email='<?= $form->get('Email')->getValue()?>'"/>
+                <?php //$this->formElement($form->get('Email')); ?>   
+                <?= $this->formElementErrors($form->get('Email')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="User.Password" name="Password" id="Password" type="Password" class="form-control" placeholder="Password" ng-init="User.Password='<?= $form->get('Password')->getValue()?>'"/>
+                <?php //$this->formElement($form->get('Password')); ?>   
+                <?= $this->formElementErrors($form->get('Password')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="User.repassword" name="repassword" id="repassword" type="Password" class="form-control" placeholder="Retype password" ng-init="User.repassword='<?= $form->get('repassword')->getValue()?>'"/>
+                <?php //$this->formElement($form->get('repassword')); ?>   
+                <?= $this->formElementErrors($form->get('repassword')); ?> 
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save change" class="btn btn-primary" />
+            </div>
+        <?php //$this->form ()->closeTag ();?><!-- form -->
+        <?php if (!is_null($message) || isset($message)){?>
+            <div class="form-group">
+                <?= $this->partial("error/_information.phtml", array("message" => $message,)); ?>   
+            </div>
+        <?php } ?>
+        </form>
+
+    </section><!-- content -->
+  </div>
+</div>

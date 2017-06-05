@@ -1,0 +1,40 @@
+<div class="container" ng-controller="ManagePhoneBookController">
+    <?= $this->partial("layout/head/head-page.phtml", ["signString" => ["headTitle"=>"Phone book","smallTitle" => $signString['title']]])?>
+    <section id="phonBookFormSection">       
+        <form ng-submit="submit('<?=$this->url('phonebook',array('action'=>'manage'))?>')" class="form-horizontal">
+            <input ng-model="PhoneBook.id" name="id" id="id" type='hidden' ng-init="PhoneBook.id='<?= $form->get('id')->getValue()?>'"/>
+           <div class="form-group">
+               <input ng-model="PhoneBook.FirstName" name="FirstName" id="FirstName" type="text" class="form-control" placeholder="First name" ng-init="PhoneBook.FirstName='<?= $form->get('FirstName')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('FirstName')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="PhoneBook.LastName" name="LastName" id="LastName" type="text" class="form-control" placeholder="Last name" ng-init="PhoneBook.LastName='<?= $form->get('LastName')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('LastName')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="PhoneBook.HomePhone" name="HomePhone" id="HomePhone" type="tel" class="form-control" placeholder="Home Phone xx-xxx-xx-xx" ng-init="PhoneBook.HomePhone='<?= $form->get('HomePhone')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('HomePhone')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="PhoneBook.MobilePhone" name="MobilePhone" id="MobilePhone" type="tel" class="form-control" placeholder="Cell phone xxx-xxx-xxx" ng-init="PhoneBook.MobilePhone='<?= $form->get('MobilePhone')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('MobilePhone')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="PhoneBook.Email" name="Email" id="Email" type="email" class="form-control" placeholder="Email" ng-init="PhoneBook.Email='<?= $form->get('Email')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('Email')); ?> 
+            </div>
+           <div class="form-group">
+               <input ng-model="PhoneBook.WorkTitle" name="WorkTitle" id="WorkTitle" type="text" class="form-control" placeholder="Work title " ng-init="PhoneBook.WorkTitle='<?= $form->get('WorkTitle')->getValue()?>'"/>
+                <?= $this->formElementErrors($form->get('WorkTitle')); ?> 
+            </div>
+            <div class="form-group">
+                <input type="submit" value="<?= $signString['button']?>" class="btn btn-primary" />
+            </div>
+        <?php if (!is_null($message) || isset($message)){?>
+        <div class="form-group">
+                <?= $this->partial("error/_information.phtml", array("message" => $message,)); ?>   
+            </div>
+        <?php } ?>
+        </form>    
+    </section>
+</div>

@@ -1,0 +1,11 @@
+<div class="alert alert-<?= $typeAlert?>" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign"
+	aria-hidden="false"></span> <span class="sr-only">Error:</span>
+  <?php if (is_array($message)){
+            foreach ($message as $text){?>
+                <span class="sr-only">Error:</span><?=$text?>
+            <?php } 
+            } else {?>
+                <span class="sr-only">Error:</span><?=$message?>
+<?php   } ?>
+</div>
