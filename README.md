@@ -1,5 +1,5 @@
 # Phone book
-To see the authentication application can do the following steps:
+To see the phone book application can do the following steps:
 
 
 1) install composer from the web site:
